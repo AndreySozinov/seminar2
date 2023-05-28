@@ -127,34 +127,34 @@ public class Program {
         for (int i = 0; i < fieldSizeX; i++){
             for (int j = 0; j < fieldSizeY; j++){
                 // Проверка ряда вправо.
-                if (countRowRight(i, j, DOT_HUMAN) == WIN_COUNT-1){
-                    if (isCellValid(i + WIN_COUNT-1, j) && isCellEmpty(i + WIN_COUNT-1, j)) {
-                        x = i + WIN_COUNT-1;
+                if (countRowRight(i, j, DOT_HUMAN) == WIN_COUNT-2){
+                    if (isCellValid(i + WIN_COUNT-2, j) && isCellEmpty(i + WIN_COUNT-2, j)) {
+                        x = i + WIN_COUNT-2;
                         y = j;
                     } else if (isCellValid(i - 1, j) && isCellEmpty(i - 1, j)) {
                         x = i - 1;
                         y = j;
                     }
-                } else if (countRowUpRight(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка диагонали вправо-вверх.
-                    if (isCellValid(i + WIN_COUNT-1, j - WIN_COUNT-1) && isCellEmpty(i + WIN_COUNT-1, j - WIN_COUNT-1)) {
-                        x = i + WIN_COUNT-1;
-                        y = j - WIN_COUNT-1;
+                } else if (countRowUpRight(i, j, DOT_HUMAN) == WIN_COUNT-2) { // Проверка диагонали вправо-вверх.
+                    if (isCellValid(i + WIN_COUNT-2, j - WIN_COUNT-2) && isCellEmpty(i + WIN_COUNT-2, j - WIN_COUNT-2)) {
+                        x = i + WIN_COUNT-2;
+                        y = j - WIN_COUNT-2;
                     } else if (isCellValid(i - 1, j + 1) && isCellEmpty(i - 1, j + 1)) {
                         x = i - 1;
                         y = j + 1;
                     }
-                } else if (countRowDownRight(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка диагонали вправо-вниз.
-                    if (isCellValid(i + WIN_COUNT-1, j + WIN_COUNT-1) && isCellEmpty(i + WIN_COUNT-1, j + WIN_COUNT-1)) {
-                        x = i + WIN_COUNT-1;
-                        y = j + WIN_COUNT-1;
+                } else if (countRowDownRight(i, j, DOT_HUMAN) == WIN_COUNT-2) { // Проверка диагонали вправо-вниз.
+                    if (isCellValid(i + WIN_COUNT-2, j + WIN_COUNT-2) && isCellEmpty(i + WIN_COUNT-2, j + WIN_COUNT-2)) {
+                        x = i + WIN_COUNT-2;
+                        y = j + WIN_COUNT-2;
                     } else if (isCellValid(i - 1, j - 1) && isCellEmpty(i - 1, j - 1)) {
                         x = i - 1;
                         y = j - 1;
                     }
-                } else if (countRowDown(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка ряда вниз.
-                    if (isCellValid(i, j + WIN_COUNT-1) && isCellEmpty(i, j + WIN_COUNT-1)) {
+                } else if (countRowDown(i, j, DOT_HUMAN) == WIN_COUNT-2) { // Проверка ряда вниз.
+                    if (isCellValid(i, j + WIN_COUNT-2) && isCellEmpty(i, j + WIN_COUNT-2)) {
                         x = i;
-                        y = j + WIN_COUNT-1;
+                        y = j + WIN_COUNT-2;
                     } else if (isCellValid(i, j - 1) && isCellEmpty(i, j - 1)) {
                         x = i;
                         y = j - 1;
