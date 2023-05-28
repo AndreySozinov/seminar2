@@ -121,12 +121,54 @@ public class Program {
      * Обработка хода компьютера
      */
     private static void aiTurn(){
-        int x, y;
-        do {
-            x = random.nextInt(fieldSizeX);
-            y = random.nextInt(fieldSizeY);
+        int x = -1;
+        int y = -1;
+        // Компьютер пытается помешать игроку выиграть.
+        for (int i = 0; i < fieldSizeX; i++){
+            for (int j = 0; j < fieldSizeY; j++){
+                // Проверка ряда вправо.
+                if (countRowRight(i, j, DOT_HUMAN) == WIN_COUNT-1){
+                    if (isCellValid(i + WIN_COUNT-1, j) && isCellEmpty(i + WIN_COUNT-1, j)) {
+                        x = i + WIN_COUNT-1;
+                        y = j;
+                    } else if (isCellValid(i - 1, j) && isCellEmpty(i - 1, j)) {
+                        x = i - 1;
+                        y = j;
+                    }
+                } else if (countRowUpRight(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка диагонали вправо-вверх.
+                    if (isCellValid(i + WIN_COUNT-1, j - WIN_COUNT-1) && isCellEmpty(i + WIN_COUNT-1, j - WIN_COUNT-1)) {
+                        x = i + WIN_COUNT-1;
+                        y = j - WIN_COUNT-1;
+                    } else if (isCellValid(i - 1, j + 1) && isCellEmpty(i - 1, j + 1)) {
+                        x = i - 1;
+                        y = j + 1;
+                    }
+                } else if (countRowDownRight(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка диагонали вправо-вниз.
+                    if (isCellValid(i + WIN_COUNT-1, j + WIN_COUNT-1) && isCellEmpty(i + WIN_COUNT-1, j + WIN_COUNT-1)) {
+                        x = i + WIN_COUNT-1;
+                        y = j + WIN_COUNT-1;
+                    } else if (isCellValid(i - 1, j - 1) && isCellEmpty(i - 1, j - 1)) {
+                        x = i - 1;
+                        y = j - 1;
+                    }
+                } else if (countRowDown(i, j, DOT_HUMAN) == WIN_COUNT-1) { // Проверка ряда вниз.
+                    if (isCellValid(i, j + WIN_COUNT-1) && isCellEmpty(i, j + WIN_COUNT-1)) {
+                        x = i;
+                        y = j + WIN_COUNT-1;
+                    } else if (isCellValid(i, j - 1) && isCellEmpty(i, j - 1)) {
+                        x = i;
+                        y = j - 1;
+                    }
+                }
+            }
         }
-        while (!isCellEmpty(x, y));
+        if (x == -1 && y == -1) {
+            do {
+                x = random.nextInt(fieldSizeX);
+                y = random.nextInt(fieldSizeY);
+            }
+            while (!isCellEmpty(x, y));
+        }
         field[x][y] = DOT_AI;
     }
 
@@ -250,8 +292,8 @@ public class Program {
      * @return true or false
      */
     static boolean checkDraw(){
-        for (int x= 0; x < fieldSizeX; x++){
-            for (int y = 0; x < fieldSizeY; y++){
+        for (int x = 0; x < fieldSizeX; x++){
+            for (int y = 0; y < fieldSizeY; y++){
                 if (isCellEmpty(x, y)) return false;
             }
         }
